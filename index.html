@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudarsanam Search Engine</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#202124;font-family:Arial,sans-serif}.top{padding:22px;text-align:right;color:#555}main{max-width:720px;margin:8vh auto 0;padding:22px;text-align:center}.logo{font-size:clamp(30px,7vw,48px);font-weight:700;letter-spacing:-1.5px;color:#4285f4}.logo span{color:#ea4335}.sub{color:#666;margin:14px 0 28px}.search{display:flex;gap:8px;border:1px solid #ddd;border-radius:28px;padding:8px 12px;box-shadow:0 2px 8px #0000000d}.search input{border:0;outline:0;flex:1;min-width:0;font-size:16px;padding:8px;background:transparent}.search button{border:0;border-radius:22px;padding:10px 16px;background:#4285f4;color:white;font-size:15px}.opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0}.opts button{border:1px solid #ddd;background:#fff;border-radius:20px;padding:9px 14px;color:#333}.opts button.active{background:#e8f0fe;border-color:#4285f4;color:#174ea6}.lang{margin:18px auto;max-width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;background:#fff;font-size:15px}.hint{font-size:13px;color:#777;margin-top:30px}footer{text-align:center;color:#777;font-size:13px;margin:70px 12px 20px}@media(max-width:480px){main{margin-top:5vh;padding:16px}.search button{padding:10px}.logo{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="top">🌐 Sudarsanam</div>
+<main>
+<div class="logo">Sudarsanam <span>Search</span></div>
+<div class="sub">Explore the world in every language</div>
+<form id="searchForm">
+<div class="search"><input id="q" type="search" placeholder="Search anything in any language..." aria-label="Search" required><button type="submit">Search</button></div>
+<div class="opts">
+<button type="button" class="active" data-type="web">🌐 Web</button>
+<button type="button" data-type="images">🖼️ Images</button>
+<button type="button" data-type="videos">▶ Videos</button>
+<button type="button" data-type="news">📰 News</button>
+</div>
+<label for="lang">Search language: </label><br>
+<select class="lang" id="lang">
+<option value="">All languages</option>
+<option value="lang_en">English</option><option value="lang_ml">മലയാളം (Malayalam)</option>
+<option value="lang_hi">हिन्दी (Hindi)</option><option value="lang_ta">தமிழ் (Tamil)</option>
+<option value="lang_te">తెలుగు (Telugu)</option><option value="lang_kn">ಕನ್ನಡ (Kannada)</option>
+<option value="lang_ar">العربية (Arabic)</option><option value="lang_zh-CN">中文 (Chinese)</option>
+<option value="lang_ja">日本語 (Japanese)</option><option value="lang_fr">Français (French)</option>
+<option value="lang_es">Español (Spanish)</option><option value="lang_de">Deutsch (German)</option>
+<option value="lang_pt">Português (Portuguese)</option><option value="lang_ru">Русский (Russian)</option>
+<option value="lang_bn">বাংলা (Bengali)</option><option value="lang_ur">اردو (Urdu)</option>
+<option value="lang_it">Italiano (Italian)</option><option value="lang_nl">Nederlands (Dutch)</option>
+<option value="lang_ko">한국어 (Korean)</option><option value="lang_tr">Türkçe (Turkish)</option>
+</select>
+</form>
+<div class="hint">Type in your own language. Choose “All languages” to broaden your search.</div>
+</main>
+<footer>Sudarsanam Search Engine · Created by Sudarsanan K R</footer>
+<script>
+let type='web';
+document.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click',()=>{type=b.dataset.type;document.querySelectorAll('[data-type]').forEach(x=>x.classList.toggle('active',x===b))}));
+document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();let q=document.getElementById('q').value.trim();if(!q)return;let urls={web:'https://www.google.com/search?q=',images:'https://www.google.com/search?tbm=isch&q=',videos:'https://www.google.com/search?tbm=vid&q=',news:'https://www.google.com/search?tbm=nws&q='};let lang=document.getElementById('lang').value;let url=urls[type]+encodeURIComponent(q)+(lang?'&lr='+lang:'');window.open(url,'_blank','noopener')});
+</script>
+</body>
+</html>
